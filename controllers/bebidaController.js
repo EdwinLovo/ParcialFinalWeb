@@ -34,3 +34,34 @@ controller.getOne = function(req,res){
         }
     })
 }
+
+controller.delete = function(req,res){
+    let {id}= req.params;
+    bebida.findOneAndDelete({_id:id}, function(err){
+        if(err){
+            return res.send(err);
+        }
+        else{
+            return res.json('BOrrado con exito');
+        }
+    });
+}
+
+controller.update = function(req,res){
+    let {id} = req.params;
+    let data = {
+        marca: req.body.marca,
+        tipo: req.body.tipo,
+        anios: req.body.anios
+    }
+    bebida.findOneAndUpdate({_id:id}, data, function(err,old){
+        if(err){
+            return res.send(err);
+        }
+        else{
+            return res.json('Actualizacion exitosa');
+        }
+    });
+}
+
+module.exports = controller;

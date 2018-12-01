@@ -6,10 +6,11 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 mongoose.connect("mongodb://localhost/parcialfinal", {useNewUrlParser: true})
-.then(console.log('Conexion a mongo exitosa'))
+.then(console.log('Conexion a mongo exitosa')) 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var bebidasRouter = require('./routes/bebidas');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter, usersRouter);
 /*app.use('/users', usersRouter);*/
+app.use('/', bebidasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
