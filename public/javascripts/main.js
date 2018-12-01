@@ -41,7 +41,7 @@ function bebidas(){
             <td>${item.tipo}</td>
             <td>${item.anios}</td>
             <td>
-                <a href="/api/bebidasAlcoholicas/${item._id}" class="eliminar">Eliminar</a>
+                <a href="/api/bebidasAlcoholicas/${item._id}" class="eliminar btn btn-warning">Eliminar</a>
                 <a href="/api/bebidasAlcoholicas/${item._id}" class="actualizar btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Actualizar</a>
             </td>
             </tr>`
@@ -64,6 +64,52 @@ function bebidas(){
                 })
             })
         })
+
+        let actualizar = document.querySelectorAll('.actualizar');
+        actualizar.forEach(item=>{
+            item.addEventListener('click', function(e){
+                e.preventDefault();
+                let url = this['href'];
+                fetch(url, {
+                    method: 'GET'
+                }).then(res=>{
+                    return res.text();
+                }).catch(err=>{
+                    console.log(err);
+                }).then(data=>{
+                    let form = document.querySelector('#form2');
+                    form.idBebida.value = JSON.parse(data)._id;
+                    form.marca2.value = JSON.parse(data).marca;
+                    form.tipo2.value = JSON.parse(data).tipo;
+                    form.anios2.value = JSON.parse(data).anios;
+                    //bebidas();
+                })
+            })
+        });
     })
     
 }
+
+document.querySelector('#form2').addEventListener('submit', function(e){
+    e.preventDefault();
+    let url = '/api/bebidasAlcoholicas/'+document.forms['form2']['idBebida'].value;
+    let data = {
+        marca: document.forms['form2']['marca2'].value,
+        tipo: document.forms['form2']['tipo2'].value,
+        anios: document.forms['form2']['anios2'].value
+    }
+    console.log(url);
+    fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type':'application/json'
+        }
+    }).then(res=>{
+        res.json();
+    }).catch(err=>{
+        console.log(err);
+    }).then(res=>{
+        bebidas();
+    })
+});
