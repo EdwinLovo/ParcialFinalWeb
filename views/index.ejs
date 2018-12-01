@@ -5,19 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css">
   <title>Bebidas</title>
 </head>
 <body>
   
-  <h2 class="mb-4">Administrador de Bebidas Alcoholicas</h2>
+  <header>
+      
+    <h2 class="center mb-4 mt-5" id="titulo"> <i class="fas fa-wine-bottle" id="bot"></i> Administrador de Bebidas Alcoholicas</h2>
+  </header>
+  
 
-  <form action="" method="POST" id="form1" name="form1" class="form-inline">
+  <form action="" method="POST" id="form1" name="form1" class="form-inline center">
     <section class="form-group mb-2">
       <input type="text" name="marca" id="marca" placeholder="Marca"  class="form-control">
     </section>
     <section class="form-group mx-sm-3 mb-2">
-      <input type="text" name="tipo" id="tipo" placeholder="tipo"  class="form-control">
+      <input type="text" name="tipo" id="tipo" placeholder="Tipo"  class="form-control">
     </section>
     <section class="form-group mb-2">
       <input type="text" name="anios" id="anios" placeholder="Años" class="form-control">
@@ -27,43 +32,39 @@
     </section>
   </form>
 
-  <table id="tabla" class="table table-hover mt-5">
-    <thead class="thead-dark">
-      <tr>
-        <th>ID</th>
-        <th>Marca</th>
-        <th>Tipo</th>
-        <th>Años</th>
-        <th>Opciones</th>
-      </tr>
-    </thead>
-    <tbody id="llenar"></tbody>
-  </table>
+  <section class="table-responsive">
+    <table id="tabla" class="table table-hover mt-5 center table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Marca</th>
+          <th>Tipo</th>
+          <th>Años</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody id="llenar"></tbody>
+    </table>
+  </section>
 
-  <!-- Button trigger modal 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>-->
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Información actual de la bebida</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <form action="" id="form2" name="form2">
         <div class="modal-body">
-          <input type="text" id='idBebida' name="idBebida">
+          <input type="hidden" id='idBebida' name="idBebida">
           <input type="text" name="marca2" id="marca2" class="col mb-2">
           <input type="text" name="tipo2" id="tipo2" class="col mb-2">
           <input type="text" name="anios2" id="anios2" class="col">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-ban"></i></button>
           <button type="submit" class="btn btn-primary">Actualizar</button>
         </div>
       </form>

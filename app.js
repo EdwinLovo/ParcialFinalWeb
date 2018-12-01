@@ -6,7 +6,10 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 mongoose.connect("mongodb://localhost/parcialfinal", {useNewUrlParser: true})
-.then(console.log('Conexion a mongo exitosa')) 
+.then(console.log('Conexion a mongo exitosa'))
+.catch(err=>{
+  console.log('{status: 400}');
+})
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

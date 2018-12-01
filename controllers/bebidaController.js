@@ -9,16 +9,16 @@ controller.create = async function(req,res){
     })
 
     const beb = await data.save();
-    return res.json(beb);
+    return res.status(200).json(beb);
 }
 
 controller.getAll = function(req,res){
     bebida.find({}, function(err,bebidas){
         if(err){
-            return res.send(err);
+            return res.status(500).send(err);
         }
         else{
-            return res.json({bebidas});
+            return res.status(200).json({bebidas});
         }
     })
 }
@@ -27,10 +27,10 @@ controller.getOne = function(req,res){
     let {id} = req.params;
     bebida.findById(id, function(err, bebida){
         if(err){
-            return res.send(err);
+            return res.status(500).send(err);
         }
         else{
-            return res.json(bebida);
+            return res.status(200).json(bebida);
         }
     })
 }
@@ -39,10 +39,10 @@ controller.delete = function(req,res){
     let {id}= req.params;
     bebida.findOneAndDelete({_id:id}, function(err){
         if(err){
-            return res.send(err);
+            return res.status(500).send(err);
         }
         else{
-            return res.json('BOrrado con exito');
+            return res.status(200).json('BOrrado con exito');
         }
     });
 }
@@ -56,10 +56,10 @@ controller.update = function(req,res){
     }
     bebida.findOneAndUpdate({_id:id}, data, function(err,old){
         if(err){
-            return res.send(err);
+            return res.status(500).send(err);
         }
         else{
-            return res.json('Actualizacion exitosa');
+            return res.status(200).json('Actualizacion exitosa');
         }
     });
 }

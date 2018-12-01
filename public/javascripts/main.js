@@ -22,6 +22,9 @@ document.querySelector('#form1').addEventListener('submit', function(e){
     }).then(res=>{
         bebidas();
     })
+    document.forms['form1']['marca'].value='';
+    document.forms['form1']['tipo'].value='';
+    document.forms['form1']['anios'].value='';
 });
 
 function bebidas(){
@@ -36,13 +39,13 @@ function bebidas(){
     }).then(data=>{
         JSON.parse(data).bebidas.forEach(item=>{
             contenido = contenido + `<tr>
-            <td>${item._id}</td>
-            <td>${item.marca}</td>
-            <td>${item.tipo}</td>
-            <td>${item.anios}</td>
+            <td><div>${item._id}</div></td>
+            <td><div>${item.marca}</div></td>
+            <td><div>${item.tipo}</div></td>
+            <td><div>${item.anios}</div></td>
             <td>
-                <a href="/api/bebidasAlcoholicas/${item._id}" class="eliminar btn btn-warning">Eliminar</a>
-                <a href="/api/bebidasAlcoholicas/${item._id}" class="actualizar btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Actualizar</a>
+                <a href="/api/bebidasAlcoholicas/${item._id}" class="eliminar btn btn-warning"><i class="fas fa-trash-alt"></i></a>
+                <a href="/api/bebidasAlcoholicas/${item._id}" class="actualizar btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-edit"></i></a>
             </td>
             </tr>`
         });
@@ -58,6 +61,7 @@ function bebidas(){
                 }).then(res=>{
                     res.json();
                 }).catch(err=>{
+                    res.status(400).send(err);
                     console.log(err);
                 }).then(res=>{
                     bebidas();
@@ -110,6 +114,7 @@ document.querySelector('#form2').addEventListener('submit', function(e){
     }).catch(err=>{
         console.log(err);
     }).then(res=>{
+        console.log(res);
         bebidas();
     })
 });
